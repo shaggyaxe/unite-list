@@ -179,9 +179,9 @@ let s:formats = {
       \ }
 
 let s:source = {
-      \ 'name' : 'webcolorname',
+      \ 'name' : 'list',
       \ 'description' : 'Web color names',
-      \ 'syntax': 'uniteSource__webcolorname',
+      \ 'syntax': 'uniteSource__list',
       \ 'action_table' : {},
       \ 'hooks': {},
       \ }
@@ -219,9 +219,9 @@ function! s:source.hooks.on_syntax(args, context)
     let hex = call('s:rgb2hex', color.rgb)
     let pindex = call('s:get_palette_index', color.rgb)
 
-    let group = 'uniteSource__webcolorname_' . color.name
+    let group = 'uniteSource__list_' . color.name
     let pattern = '/\s*\<' . color.name . '\>.*/'
-    execute 'syntax match ' . group . ' ' . pattern . ' contained containedin=uniteSource__webcolorname'
+    execute 'syntax match ' . group . ' ' . pattern . ' contained containedin=uniteSource__list'
     execute 'highlight default ' . group . ' guibg=' . hex . ' guifg=' . color.fg
           \ . ' ctermfg=' . color.fg . ' ctermbg=' . pindex
   endfor
