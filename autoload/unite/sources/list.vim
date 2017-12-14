@@ -296,7 +296,7 @@ function! s:source.action_table.insert_rgb.func(candidate)
 endfunction
 " }}}
 
-function! unite#sources#webcolorname#define()
+function! unite#sources#list#define()
   return s:source
 endfunction
 
