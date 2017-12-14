@@ -1,6 +1,6 @@
-" unite source: webcolorname
+" unite source: list
 "
-" File: autoload/unite/sources/webcolorname.vim
+" File: autoload/unite/sources/list.vim
 " Version: 0.1
 " Author: Yuki <paselan@gmail.com>
 " License: MIT License {{{
