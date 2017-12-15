@@ -2,7 +2,6 @@
 "
 " File: autoload/unite/sources/list.vim
 " Version: 0.1
-" Author: Yuki <paselan@gmail.com>
 " License: MIT License {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -33,7 +32,7 @@ let s:source = {
       \ 'syntax': 'uniteSource__list',
       \ 'action_table' : {},
       \ 'hooks': {},
-      \ 'default_action' : 'yank',
+      \ 'default_action' : 'yank_and_exit',
       \ }
 
 function! s:source.gather_candidates(args, context)
@@ -58,6 +57,15 @@ endfunction
 " }}}
 
 " Actions {{{
+let s:source.action_table.yank_and_exit = {
+      \ 'description': 'Yank to register u',
+      \ }
+function! s:source.action_table.yank_and_exit.func(candidate)
+  let text=a:candidate.word
+  " echohl Question | echo 'In @u:' | echohl Normal
+  " echo text
+  let @u=text
+endfunction
 
 " }}}
 
