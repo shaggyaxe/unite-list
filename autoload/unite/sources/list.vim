@@ -37,14 +37,18 @@ let s:source = {
 
 function! s:source.gather_candidates(args, context)
   let list_name=get(a:args, 0, '')
+  let s:return_row=get(a:args, 1, '')
   exe 'let list=g:'.list_name
   " call confirm (get(a:args, 0, ''))
   let candidates = []
 
+  let row=0
   for elt in list
+    let row+=1
     call add(candidates, {
           \ 'word': elt,
-          \ })
+          \ 'source__row': row,
+          \})
   endfor
 
   return candidates
@@ -61,10 +65,14 @@ let s:source.action_table.yank_and_exit = {
       \ 'description': 'Yank to register u',
       \ }
 function! s:source.action_table.yank_and_exit.func(candidate)
-  let text=a:candidate.word
-  " echohl Question | echo 'In @u:' | echohl Normal
-  " echo text
-  let @u=text
+  if s:return_row
+    let @u=a:candidate.source__row
+  else
+    let text=a:candidate.word
+    " echohl Question | echo 'In @u:' | echohl Normal
+    " echo text
+    let @u=text
+  endif
 endfunction
 
 " }}}
